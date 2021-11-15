@@ -18,10 +18,10 @@ export class Art {
 		this.ctx.arc(x, y, r, 0, Math.PI * 2);
 		this.ctx.stroke();
 	}
-	rect(x: number, y: number, w: number, h: number) {
-		this.ctx.beginPath();
-		this.ctx.rect(x, y, w, h);
-		this.ctx.stroke();
+	rect(x: number, y: number, w: number, h: number, color: string) {
+		this.ctx.fillStyle = color;
+		this.ctx.fillRect(x, y, w, h);
+		
 	}
 	point(x: number, y: number, thickness: number = 1) {
 		this.ctx.beginPath();
