@@ -5,7 +5,7 @@ export class TileStraight extends Art {
     super(ctx);
   }
   draw() {
-    this.tiles(2);
+    this.tiles(20);
   }
   tiles(n: number) {
     n++;
