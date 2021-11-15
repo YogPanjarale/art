@@ -158,7 +158,7 @@ export class ParticlesDot extends Art {
 		this.ctx.canvas.height = window.innerHeight;
 		this.width = this.ctx.canvas.width;
 		this.height = this.ctx.canvas.height;
-		this.generatePoints(50);
+		this.generatePoints(100);
 	}
 	generatePoints(amount: number = 30) {
 		this.points = [];
