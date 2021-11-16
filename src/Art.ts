@@ -7,6 +7,12 @@ export class Art {
 		this.width = ctx.canvas.width;
 		this.height = ctx.canvas.height;
 	}
+	fullScreen() {
+		this.ctx.canvas.width = window.innerWidth;
+		this.ctx.canvas.height = window.innerHeight;
+		this.width = this.ctx.canvas.width;
+		this.height = this.ctx.canvas.height;
+	}
 	line(x1: number, y1: number, x2: number, y2: number) {
 		// this.ctx.beginPath();
 		this.ctx.moveTo(x1, y1);

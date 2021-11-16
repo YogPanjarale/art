@@ -8,12 +8,13 @@ import './style.css'
 import { Swastik } from './Swastik';
 import { TileSlant } from './Tiles/TilesSlant';
 import { TileStraight } from './Tiles/TileStraight';
+import { Bubbles } from './bubbles';
 
 export const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 
 
-type route = "swastik"| "tile-straight" | "tile-slant"| "paper-rulled" | "paper-displaced" | "generative-art" | "germs" | "particle-dots" | "blood-vessels";
+type route = "swastik"| "tile-straight" | "tile-slant"| "paper-rulled" | "paper-displaced" | "generative-art" | "germs" | "particle-dots" | "blood-vessels"|"bubbles";
 function getArt(route:route, ctx:CanvasRenderingContext2D): Art{
   switch(route){
     case 'swastik':
@@ -34,6 +35,8 @@ function getArt(route:route, ctx:CanvasRenderingContext2D): Art{
       return new ParticlesDot(ctx);
     case 'blood-vessels':
       return new BloodVessels(ctx);
+    case 'bubbles':
+      return new Bubbles(ctx);
     default:
       return new Art(ctx);
   }
