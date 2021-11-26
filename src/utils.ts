@@ -14,6 +14,19 @@ export class Vector2D {
     distance(v: Vector2D) {
         return Math.sqrt(Math.pow(this.x - v.x, 2) + Math.pow(this.y - v.y, 2));
     }
+	normalize() {
+		const length = this.length();
+		return new Vector2D(this.x / length, this.y / length);
+	}
+	multiply(n: number) {
+		return new Vector2D(this.x * n, this.y * n);
+	}
+	length() {
+		return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+	}
+	toString() {
+		return { x: this.x, y: this.y };
+	}
 }
 export const randRange = (min: number, max?: number) => {
 	if (max === undefined) {
