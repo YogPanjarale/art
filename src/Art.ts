@@ -7,18 +7,37 @@ export class Art {
 		this.width = ctx.canvas.width;
 		this.height = ctx.canvas.height;
 	}
+	/** Make the canvas size to fullscreen*/
 	fullScreen() {
 		this.ctx.canvas.width = window.innerWidth;
 		this.ctx.canvas.height = window.innerHeight;
 		this.width = this.ctx.canvas.width;
 		this.height = this.ctx.canvas.height;
 	}
+	/**
+	 * draws a line from (x1,y1) to (x2,y2)
+	 */
 	line(x1: number, y1: number, x2: number, y2: number) {
 		// this.ctx.beginPath();
 		this.ctx.moveTo(x1, y1);
 		this.ctx.lineTo(x2, y2);
 		this.ctx.stroke();
 	}
+	/**
+	 * Clears the canvas and fill it with a color
+	 * @param color : string;
+	 * 
+	 */
+	background(color: string) {
+		this.ctx.fillStyle = color;
+		this.ctx.fillRect(0, 0, this.width, this.height);
+	}
+	/**
+	 * 
+	 * @param x x-coordinate
+	 * @param y y-coordinate
+	 * @param r radius
+	 */
 	circle(x: number, y: number, r: number) {
 		this.ctx.beginPath();
 		this.ctx.arc(x, y, r, 0, Math.PI * 2);

@@ -10,12 +10,13 @@ import { TileSlant } from './Tiles/TilesSlant';
 import { TileStraight } from './Tiles/TileStraight';
 import { Bubbles } from './bubbles';
 import { LineX } from './LineX';
+import { Matrix } from './matrix';
 
 export const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 
 
-type route = "swastik"| "tile-straight" | "tile-slant"| "paper-rulled" | "paper-displaced" | "generative-art" | "germs" | "particle-dots" | "blood-vessels"|"bubbles"| "linex";
+type route = "swastik"| "tile-straight" | "tile-slant"| "paper-rulled" | "paper-displaced" | "generative-art" | "germs" | "particle-dots" | "blood-vessels"|"bubbles"| "linex"|"matrix";
 function getArt(route:route, ctx:CanvasRenderingContext2D): Art{
   switch(route){
     case 'swastik':
@@ -40,6 +41,8 @@ function getArt(route:route, ctx:CanvasRenderingContext2D): Art{
       return new Bubbles(ctx);
     case 'linex':
       return new LineX(ctx);
+    case 'matrix':
+      return new Matrix(ctx);
     default:
       return new Art(ctx);
   }
@@ -48,5 +51,6 @@ export { Art}
 const urlSearchParams = new URLSearchParams(window.location.search) as any;
 const params = Object.fromEntries(urlSearchParams.entries());
 console.log(params.art);
+
 const art = getArt(params.art,ctx as CanvasRenderingContext2D);
 art.draw();
