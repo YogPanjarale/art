@@ -113,6 +113,6 @@ function getRandomSize() {
 }
 
 function getRandomSpeed() {
-    return 1 + Math.random() * 5;
+    return 1 + Math.random() * 3;
 }
 
