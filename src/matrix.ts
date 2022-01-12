@@ -12,7 +12,6 @@ const getRandomChar = () => {
 	const types = [getLetters, getNumbers, getSymbols];
 	return types[Math.floor(Math.random() * types.length)]();
 };
-let Ys = new Set<number>();
 export class Matrix extends Art {
 	strips: Strip[];
 	constructor(ctx: CanvasRenderingContext2D) {
