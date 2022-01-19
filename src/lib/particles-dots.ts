@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+const isIframe = window.location!==window.parent.location;
 import { Art } from "./Art";
 import { Vector2D } from "./utils";
 let mouse: Vector2D = new Vector2D(0, 0);
@@ -57,11 +58,13 @@ class Point {
 	ctx: CanvasRenderingContext2D;
 	canvasSize: Vector2D;
 	hash: number;
+	mouseLine:boolean
 	constructor(
 		ctx: CanvasRenderingContext2D,
 		position: Vector2D,
 		velocity: Vector2D,
 		radius: number,
+		mouseLine:boolean,
 	) {
 		this.ctx = ctx;
 		this.position = position;
@@ -69,6 +72,7 @@ class Point {
 		this.radius = radius;
 		this.canvasSize = new Vector2D(ctx.canvas.width, ctx.canvas.height);
 		this.hash = id + 1000;
+		this.mouseLine = mouseLine;
 		id++;
 	}
 
@@ -108,7 +112,8 @@ class Point {
 		//         this.ctx.lineTo(e.position.x, e.position.y);
 		//         this.ctx.stroke();
 		//     }})
-		if (this.position.distance(mouse) < this.radius*40) {
+
+		if (this.mouseLine&&this.position.distance(mouse) < this.radius*40) {
 			// console.log("mouse", mouse);
 			//line to mouse
 			this.ctx.beginPath();
@@ -159,6 +164,7 @@ export class ParticlesDot extends Art {
 	}
 	generatePoints(amount = 30): void {
 		this.points = [];
+		
 		for (let i = 0; i < amount; i++) {
 			const point = new Point(
 				this.ctx,
@@ -171,7 +177,7 @@ export class ParticlesDot extends Art {
 					(Math.random() - 0.5) * 2
 				),
 				Math.random() * 3 + 1,
-			);
+!isIframe);
 			this.points.push(point);
 		}
 	}

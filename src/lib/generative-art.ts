@@ -79,7 +79,7 @@ class Flower {
 		} else {
 			this.flowerImage();
 		}
-        console.log("growing");
+        // console.log("growing");
         requestAnimationFrame(this.grow.bind(this));
     }
 		// console.log(this.image , this.x,this.y,this.size,this.size);

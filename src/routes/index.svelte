@@ -12,7 +12,6 @@
 	import { routes } from '$lib/routes';
 	export let art;
 	import Tile from '$lib/tile.svelte';
-import type { Load } from '@sveltejs/kit';
 	import { onMount } from 'svelte';
 
 	import { MetaTags } from 'svelte-meta-tags';
@@ -30,7 +29,7 @@ import type { Load } from '@sveltejs/kit';
 </script>
 
 <svelte:head>
-	<MetaTags title="Art" description="generative digital art - by Yog Panjarale" />
+	<MetaTags title={art?art+"Art":"Art"} description={`${art} generative digital art - by Yog Panjarale"`} />
 </svelte:head>
 {#if !!art}
 	<div id="app">

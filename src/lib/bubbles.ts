@@ -66,7 +66,7 @@ class Particle {
 		if (this.p.y + this.size > height || this.p.y - this.size < 0) {
 			this.v.y = -this.v.y;
 		}
-        console.log('update',);
+        // console.log('update',);
         
 		this.p=this.p.add(this.v);
 	}
