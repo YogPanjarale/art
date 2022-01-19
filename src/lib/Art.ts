@@ -4,8 +4,16 @@ export class Art {
 	height: number;
 	constructor(ctx: CanvasRenderingContext2D) {
 		this.ctx = ctx;
-		this.width = ctx.canvas.width;
-		this.height = ctx.canvas.height;
+		if (window.innerHeight< this.ctx.canvas.height) {
+			this.ctx.canvas.height=window.innerHeight;
+		}
+		if (window.innerWidth< this.ctx.canvas.width) {
+			this.ctx.canvas.width=window.innerWidth;
+		}
+
+		this.width = this.ctx.canvas.width;
+		this.height = this.ctx.canvas.height;
+
 	}
 	/** Make the canvas size to fullscreen*/
 	fullScreen(): void {
