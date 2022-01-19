@@ -61,7 +61,7 @@ class Point {
 		ctx: CanvasRenderingContext2D,
 		position: Vector2D,
 		velocity: Vector2D,
-		radius: number
+		radius: number,
 	) {
 		this.ctx = ctx;
 		this.position = position;
@@ -108,7 +108,7 @@ class Point {
 		//         this.ctx.lineTo(e.position.x, e.position.y);
 		//         this.ctx.stroke();
 		//     }})
-		if (this.position.distance(mouse) < this.radius * 50) {
+		if (this.position.distance(mouse) < this.radius*40) {
 			// console.log("mouse", mouse);
 			//line to mouse
 			this.ctx.beginPath();
@@ -155,7 +155,7 @@ export class ParticlesDot extends Art {
 		this.ctx.canvas.height = window.innerHeight;
 		this.width = this.ctx.canvas.width;
 		this.height = this.ctx.canvas.height;
-		this.generatePoints(100);
+		this.generatePoints(window.innerWidth/10);
 	}
 	generatePoints(amount = 30): void {
 		this.points = [];
@@ -170,7 +170,7 @@ export class ParticlesDot extends Art {
 					(Math.random() - 0.5) * 2,
 					(Math.random() - 0.5) * 2
 				),
-				Math.random() * 3 + 1
+				Math.random() * 3 + 1,
 			);
 			this.points.push(point);
 		}
