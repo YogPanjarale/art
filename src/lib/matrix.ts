@@ -25,19 +25,19 @@ export class Matrix extends Art {
             this.strips = [...this.strips,...texts.map((text) => this.getStripFromText("   "+text))];
         });
 	}
-    getStripFromText(text: string) {
-        let randomX = Math.random() * this.width;
-        let w = this.width
-			let randomSpeed = getRandomSpeed();
+    getStripFromText(text: string): Strip {
+        const randomX = Math.random() * this.width;
+        const w = this.width
+			const randomSpeed = getRandomSpeed();
 			// const randomSize = getRandomSize()
-        let cb = () => {
+        const cb = () => {
             return {
                 letters: Array.from(text),
                 speed: getRandomSpeed(),
                 x:Math.random() * w/10 * 10
             };
         }
-        let strip = new Strip(
+        const strip = new Strip(
             this.ctx,
             Array.from(text),
             randomX,
@@ -48,11 +48,15 @@ export class Matrix extends Art {
     }
             
     getCB = () => {
-        return () => this.newStripCB(this.width);
+        return () :{
+			letters: string[];
+			speed: number;
+			x: number;
+		}=> this.newStripCB(this.width);
     }
-	newStripCB(width: number) {
-		let randomX = Math.random() * width/10 * 10;
-        let randomSpeed = getRandomSpeed();
+	newStripCB(width: number): { letters: string[]; speed: number; x: number; } {
+		const randomX = Math.random() * width/10 * 10;
+        const randomSpeed = getRandomSpeed();
         const randomSize = getRandomSize();
 		const randomChars = Array.from({ length: randomSize }, () => getRandomChar());
         // console.log({randomChars});
@@ -63,11 +67,11 @@ export class Matrix extends Art {
 			x: randomX,
 		};
 	}
-	getRandomCharArr(size: number) {
+	getRandomCharArr(size: number): string[] {
 		return Array.from({ length: size }, () => getRandomChar());
 	}
 
-	draw() {
+	draw(): void {
 		this.background("rgb(0,0,0)");
 		this.strips.forEach((strip) => strip.update());
 		this.strips.forEach((strip) => strip.draw());
@@ -87,7 +91,7 @@ class Strip {
 	update() {
 		this.y += this.speed;
 		if (this.y > this.ctx.canvas.height) {
-			let d = this.cb();
+			const d = this.cb();
 			this.letters = d.letters;
 			this.speed = d.speed;
             this.x = d.x;
@@ -101,7 +105,7 @@ class Strip {
 			this.ctx.fillStyle = `rgba(0,255,0,${
 				((i + 1) / this.letters.length)
 			})`;
-			let y = this.y + i * this.height;
+			const y = this.y + i * this.height;
             this.ctx.font = `${Math.floor(this.height*0.9)}px 'Fira Code'`;
 			this.ctx.fillText(letter, this.x, y);
 			// console.log(letter, this.x, y);

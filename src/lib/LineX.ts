@@ -2,8 +2,8 @@ import { Art } from "./Art";
 import { Vector2D } from "./utils";
 
 class LineX extends Art{
-    thicknes:number = 50;
-    turns: number = 10;
+    thicknes = 50;
+    turns = 10;
     constructor(ctx: CanvasRenderingContext2D, ) {
         super(ctx);
     }
@@ -12,7 +12,7 @@ class LineX extends Art{
         const y = Math.random() * this.height;
         return new Vector2D(x, y);
     }
-    draw(){
+    draw(): void{
         let previousPoint = this.getRandomVectorOnCanvas();
         // alert("ad")
         // set background to black
@@ -30,7 +30,7 @@ class LineX extends Art{
                 const m2 = (j);
                 const p1 = this.sectionFormula(previousPoint.x,previousPoint.y,v.x,v.y,m1,m2);
                 this.ctx.fillStyle = "rgba(255,255,255,0.5)";
-            let w =  this.thicknes/this.turns * 10;
+            const w =  this.thicknes/this.turns * 10;
 
                 this.circle(p1.x,p1.y,w/2);
             }
@@ -50,7 +50,7 @@ class LineX extends Art{
 
     }
     
-    sectionFormula(x1: number,y1: number,x2: number,y2: number,m1: number,m2: number){
+    sectionFormula(x1: number,y1: number,x2: number,y2: number,m1: number,m2: number): Vector2D{
         const x = (m1*x1 + m2*x2)/(m1+m2);
         const y = (m1*y1 + m2*y2)/(m1+m2);
         return new Vector2D(x,y);

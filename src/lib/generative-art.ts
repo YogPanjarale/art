@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Art } from "./Art";
 
 export class GenerativeArt extends Art {
 	ctx: CanvasRenderingContext2D;
 	width: number;
 	height: number;
-	drawing: boolean = false;
+	drawing = false;
 	constructor(ctx: CanvasRenderingContext2D) {
 		super(ctx);
 		this.ctx = ctx;
@@ -14,10 +16,15 @@ export class GenerativeArt extends Art {
 		this.width = ctx.canvas.width;
 		this.height = ctx.canvas.height;
 	}
-	draw() {
+	draw(): void {
 		const { ctx } = this;
 		let { drawing } = this;
-
+		window.addEventListener("mouseover",()=>{
+			//check if in iframe
+			if (window.location!=window.parent.location) {
+				drawing = true;
+			}
+		})
 		window.addEventListener("mousemove", function (e) {
 			if (drawing) {
 				const root = new Root(ctx, e.x, e.y);
@@ -59,7 +66,7 @@ class Flower {
 		};
 
 		this.maxFlowerSize = this.size + Math.random() * 50;
-        this.frameSize=100;
+        this.frameSize=50;
 	}
 	grow() {
 		if (this.size < this.maxFlowerSize) {
@@ -72,20 +79,20 @@ class Flower {
 		} else {
 			this.flowerImage();
 		}
-        console.log("growing");
+        // console.log("growing");
         requestAnimationFrame(this.grow.bind(this));
     }
 		// console.log(this.image , this.x,this.y,this.size,this.size);
 	}
     flowerImage(){
-        this.ctx.drawImage(
-            this.image,
-            0,0,this.frameSize,this.frameSize,
-            this.x,
-            this.y,
-            50 ,
-            50
-        );
+        // this.ctx.drawImage(
+        //     this.image,
+        //     0,0,this.frameSize,this.frameSize,
+        //     this.x,
+        //     this.y,
+        //     50 ,
+        //     50
+        // );
     }
 	update() {
 		const { ctx, x, y } = this;

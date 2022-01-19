@@ -13,7 +13,7 @@ export class BloodVessels extends Art {
 		this.width = ctx.canvas.width;
 		this.height = ctx.canvas.height;
 	}
-    draw(){
+    draw(): void{
         const ctx = this.ctx;
         window.addEventListener('mousemove', function (e){
             const root = new Root(ctx,e.x,e.y);
