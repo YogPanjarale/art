@@ -13,6 +13,7 @@
 
 <script lang="ts">
     export let art:string;
+import Tile from '$lib/tile.svelte';
     import { onMount } from 'svelte';
 
     import{MetaTags} from 'svelte-meta-tags'
@@ -37,10 +38,15 @@
     <canvas height='500' width='500' id="canvas"></canvas>
 </div>
 {:else}
-<div class="flex h-screen justify-center p-12">
-    <h1 class="text-2xl text-white font-blinker hover:scale-105">Art</h1>
-    <div class="flex">
-        
+<div class="flex flex-col items-center  justify-center p-12">
+    <h1 class="text-2xl text-white font-blinker hover:scale-105 ">Generative Art Peices</h1>
+
+    <div class="flex flex-row flex-wrap justify-center  space-y-2 space-x-2 ">
+        <div/>
+        {#each routes as item}
+            {@const href = `/?art=${item}`}
+             <Tile href={href} text={item} showEmbed />
+        {/each}
     </div>
 </div>
 
