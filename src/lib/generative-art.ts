@@ -19,7 +19,12 @@ export class GenerativeArt extends Art {
 	draw(): void {
 		const { ctx } = this;
 		let { drawing } = this;
-
+		window.addEventListener("mouseover",()=>{
+			//check if in iframe
+			if (window.location!=window.parent.location) {
+				drawing = true;
+			}
+		})
 		window.addEventListener("mousemove", function (e) {
 			if (drawing) {
 				const root = new Root(ctx, e.x, e.y);
@@ -61,7 +66,7 @@ class Flower {
 		};
 
 		this.maxFlowerSize = this.size + Math.random() * 50;
-        this.frameSize=100;
+        this.frameSize=50;
 	}
 	grow() {
 		if (this.size < this.maxFlowerSize) {
@@ -80,14 +85,14 @@ class Flower {
 		// console.log(this.image , this.x,this.y,this.size,this.size);
 	}
     flowerImage(){
-        this.ctx.drawImage(
-            this.image,
-            0,0,this.frameSize,this.frameSize,
-            this.x,
-            this.y,
-            50 ,
-            50
-        );
+        // this.ctx.drawImage(
+        //     this.image,
+        //     0,0,this.frameSize,this.frameSize,
+        //     this.x,
+        //     this.y,
+        //     50 ,
+        //     50
+        // );
     }
 	update() {
 		const { ctx, x, y } = this;
