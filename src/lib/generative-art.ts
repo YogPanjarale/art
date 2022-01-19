@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Art } from "./Art";
 
 export class GenerativeArt extends Art {
 	ctx: CanvasRenderingContext2D;
 	width: number;
 	height: number;
-	drawing: boolean = false;
+	drawing = false;
 	constructor(ctx: CanvasRenderingContext2D) {
 		super(ctx);
 		this.ctx = ctx;
@@ -14,7 +16,7 @@ export class GenerativeArt extends Art {
 		this.width = ctx.canvas.width;
 		this.height = ctx.canvas.height;
 	}
-	draw() {
+	draw(): void {
 		const { ctx } = this;
 		let { drawing } = this;
 

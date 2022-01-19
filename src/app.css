@@ -1,0 +1,28 @@
+/* Import your styles first */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;500;600;700;800;900&display=swap');
+#app {
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	min-width: 100vw;
+}
+body {
+	background: linear-gradient(rgb(17, 24, 39), rgba(17, 24, 39, 0.9));
+	margin: 0;
+}
+#canvas {
+	background-color: #ecf0f1;
+	box-shadow: 0 35px 35px #00000040;
+	stroke: 1px #2c3e50;
+}
+
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -4,21 +4,21 @@ export class TileStraight extends Art {
   constructor(ctx: CanvasRenderingContext2D) {
     super(ctx);
   }
-  draw() {
+  draw(): void {
     this.tiles(20);
   }
-  tiles(n: number) {
+  tiles(n: number): void {
     n++;
     this.loopXY(n, n, (x: number, y: number) => {
       this.leftRightRandomLine(x * (this.width / n), y * (this.height / n), (this.width / n));
     });
   }
-  leftRightRandomLine(cx: number, cy: number, length: number) {
-    let x1 = cx - (length / 2);
-    let y1 = cy - (length / 2);
-    let x2 = cx + (length / 2);
-    let y2 = cy + (length / 2);
-    let strightToSlant = Math.random() >= 0.5;
+  leftRightRandomLine(cx: number, cy: number, length: number): void {
+    const x1 = cx - (length / 2);
+    const y1 = cy - (length / 2);
+    const x2 = cx + (length / 2);
+    const y2 = cy + (length / 2);
+    const strightToSlant = Math.random() >= 0.5;
     if (strightToSlant) {
       this.line(cx, y1, cx, y2);
     } else {

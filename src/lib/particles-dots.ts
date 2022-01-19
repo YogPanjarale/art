@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Art } from "./Art";
 import { Vector2D } from "./utils";
 let mouse: Vector2D = new Vector2D(0, 0);
@@ -9,26 +10,26 @@ class ParticleManager {
 	static particlesXY: Map<string, Point[]> = new Map<string, Point[]>();
 	static addressMap: Map<number, string> = new Map<number, string>();
 	static setParticle(p: Point) {
-		let x = Math.floor(p.p.x / 50);
-		let y = Math.floor(p.p.y / 50);
-		let key = `${x}-${y}`;
+		const x = Math.floor(p.p.x / 50);
+		const y = Math.floor(p.p.y / 50);
+		const key = `${x}-${y}`;
 
 		if (!ParticleManager.particlesXY.has(key)) {
 			ParticleManager.particlesXY.set(key, [p]);
 			this.addressMap.set(p.hash, key);
 		} else {
 			if (!this.addressMap.has(p.hash)) {
-				let arr = ParticleManager.particlesXY.get(key)!;
+				const arr = ParticleManager.particlesXY.get(key)!;
 				if (!arr.find((e) => e.hash == p.hash)) {
 					arr.push(p);
 					this.addressMap.set(p.hash, key);
 				}
 			} else {
-				let key2 = this.addressMap.get(p.hash)!;
-				let arr = ParticleManager.particlesXY.get(key2)!;
-				let old = arr.find((e) => e.hash == p.hash)!;
+				const key2 = this.addressMap.get(p.hash)!;
+				const arr = ParticleManager.particlesXY.get(key2)!;
+				const old = arr.find((e) => e.hash == p.hash)!;
 				arr.splice(arr.indexOf(old));
-				let arr2 = ParticleManager.particlesXY.get(key)!;
+				const arr2 = ParticleManager.particlesXY.get(key)!;
 				if (!arr2.find((e) => e.hash == p.hash)) {
 					arr2.push(p);
 					this.addressMap.set(p.hash, key);
@@ -37,9 +38,9 @@ class ParticleManager {
 		}
 	}
 	static getParticles(p: Point) {
-		let x = Math.floor(p.p.x / 100);
-		let y = Math.floor(p.p.y / 100);
-		let key = `${x}-${y}`;
+		const x = Math.floor(p.p.x / 100);
+		const y = Math.floor(p.p.y / 100);
+		const key = `${x}-${y}`;
 		if (!ParticleManager.particlesXY.has(key)) {
 			return [];
 		} else {
@@ -156,7 +157,7 @@ export class ParticlesDot extends Art {
 		this.height = this.ctx.canvas.height;
 		this.generatePoints(100);
 	}
-	generatePoints(amount: number = 30) {
+	generatePoints(amount = 30): void {
 		this.points = [];
 		for (let i = 0; i < amount; i++) {
 			const point = new Point(
@@ -174,21 +175,21 @@ export class ParticlesDot extends Art {
 			this.points.push(point);
 		}
 	}
-	draw() {
+	draw(): void {
 		// console.log("draw");
 		this.ctx.clearRect(0, 0, this.width, this.height);
 		//loop i, j through points
 		for (let i = 0; i < this.points.length; i++) {
-			let p1 = this.points[i];
+			const p1 = this.points[i];
 			for (let j = 0; j < this.points.length; j++) {
-				let p2 = this.points[j];
+				const p2 = this.points[j];
 				if (i !== j) {
 					//check distance
 					if (p1.position.distance(p2.position) < 100) {
 						//draw line
 						this.ctx.beginPath();
-						let distance = p1.position.distance(p2.position);
-						let color = `rgba(0,0,0,${1 - distance / 100})`;
+						const distance = p1.position.distance(p2.position);
+						const color = `rgba(0,0,0,${1 - distance / 100})`;
 						this.ctx.strokeStyle = color;
 						this.ctx.lineWidth = 1;
 						this.ctx.moveTo(p1.position.x, p1.position.y);
