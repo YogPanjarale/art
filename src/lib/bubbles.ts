@@ -8,12 +8,12 @@ export class Bubbles extends Art {
 		this.fullScreen();
         this.genrateParticles(100);
 	}
-    genrateParticles(count: number) {
+    genrateParticles(count: number): void {
         for (let i = 0; i < count; i++) {
             this.particles.push(new Particle(this.ctx, {x:randRange(20,this.width-20),y:randRange(50,randRange(this.height-50))}, {x:randFloat(-0.2,0.2),y:randFloat(0.2,1)},randRange(5,25),"#eeeeee"));
         }
     }
-	draw() {
+	draw(): void {
         this.ctx.fillStyle="rgba(0,0,0,0.5)"
         this.ctx.rect(0, 0, this.width, this.height);
         this.ctx.fill();
@@ -66,7 +66,7 @@ class Particle {
 		if (this.p.y + this.size > height || this.p.y - this.size < 0) {
 			this.v.y = -this.v.y;
 		}
-        console.log('update',);
+        // console.log('update',);
         
 		this.p=this.p.add(this.v);
 	}

@@ -4,7 +4,7 @@ import { Germs } from './germs';
 import { BloodVessels } from './BloodVessels';
 import { Paper, PaperDisplaced } from './Paper';
 import { ParticlesDot } from './particles-dots';
-import './style.css'
+// import './style.css'
 import { Swastik } from './Swastik';
 import { TileSlant } from './Tiles/TilesSlant';
 import { TileStraight } from './Tiles/TileStraight';
@@ -17,6 +17,7 @@ const ctx = canvas.getContext('2d');
 
 
 type route = "swastik"| "tile-straight" | "tile-slant"| "paper-rulled" | "paper-displaced" | "generative-art" | "germs" | "particle-dots" | "blood-vessels"|"bubbles"| "linex"|"matrix";
+
 function getArt(route:route, ctx:CanvasRenderingContext2D): Art{
   switch(route){
     case 'swastik':
@@ -48,7 +49,8 @@ function getArt(route:route, ctx:CanvasRenderingContext2D): Art{
   }
 }
 export { Art}
-const urlSearchParams = new URLSearchParams(window.location.search) as any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const urlSearchParams = new URLSearchParams(window.location.search) as any as Record<string, any>;
 const params = Object.fromEntries(urlSearchParams.entries());
 console.log(params.art);
 

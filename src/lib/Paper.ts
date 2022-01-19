@@ -1,9 +1,9 @@
 import { Art } from "./Art";
 
 export class Paper extends Art {
-	padding: number = 50;
+	padding = 50;
     points :number[][]=[[]];
-    n:number=9;
+    n=9;
     gap: number;
     showpoints=false;
 	constructor(ctx: CanvasRenderingContext2D) {
@@ -12,17 +12,17 @@ export class Paper extends Art {
         this.generatePoints(this.n);
         this.gap = this.width/this.n;
 	}
-    generatePoints(n:number){
+    generatePoints(n:number): void{
         this.points = [];
         // two level loop with i and j
         for (let i=1;i<n;i++){
             for (let j=1;j<n;j++){
-                let gap = this.width/n;
+                const gap = this.width/n;
                 this.points.push([j*gap,i*gap]);
             }
         }
     }
-	draw() {
+	draw(): void {
         this.points.forEach((point:number[],i)=>{
             const[x1,y1] = point;
             if (this.showpoints)this.point(x1,y1,3)
@@ -51,7 +51,7 @@ export class PaperDisplaced extends Paper {
         this.generatePoints(this.n);
         this.displacePoints();
     }
-    displacePoints(){
+    displacePoints(): void{
         const {n}= this
         // return2
         // console.log(this.points);
@@ -59,7 +59,7 @@ export class PaperDisplaced extends Paper {
         for (let i=0;i<(n-1)*(n-1);i++){
                 const x = this.points[i][0];
                 const y = this.points[i][1];
-                let m = clamp((x/this.width)*(y/this.height)*25,0,this.width/(n*2
+                const m = clamp((x/this.width)*(y/this.height)*25,0,this.width/(n*2
                     ));
                 
                 const x1 = x + randomRange(-m,m);
