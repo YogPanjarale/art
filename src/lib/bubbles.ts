@@ -7,19 +7,21 @@ export class Bubbles extends Art {
 		super(ctx);
 		this.fullScreen();
         this.genrateParticles(100);
+		document.querySelector('canvas').style.background = '#000';
 	}
     genrateParticles(count: number): void {
         for (let i = 0; i < count; i++) {
-            this.particles.push(new Particle(this.ctx, {x:randRange(20,this.width-20),y:randRange(50,randRange(this.height-50))}, {x:randFloat(-0.2,0.2),y:randFloat(0.2,1)},randRange(5,25),"#eeeeee"));
+            this.particles.push(new Particle(this.ctx, {x:randRange(20,this.width-20),y:randRange(50,randRange(this.height-50))}, {x:randFloat(-0.2,0.2),y:randFloat(0.2,1)},randRange(5,25)));
         }
     }
 	draw(): void {
-        this.ctx.fillStyle="rgba(0,0,0,0.5)"
-        this.ctx.rect(0, 0, this.width, this.height);
-        this.ctx.fill();
+        // this.ctx.fillStyle="rgba(0,0,0,0.0)"
+        // this.ctx.rect(0, 0, this.width, this.height);
+        // this.ctx.fill();
+		this.ctx.clearRect(0, 0, this.width, this.height);
         //loop through particles and draw them
         this.particles.forEach(p => {
-            p.update();
+			p.update();
             p.draw();
         });
         requestAnimationFrame(this.draw.bind(this));
@@ -34,7 +36,8 @@ class Particle {
 		position: { x: number; y: number },
 		velocity: { x: number; y: number },
 		public size: number,
-		public color: string
+		public color: string="#eeeeee05",
+		public outlineColor:string = "#fff"
 	) {
 		this.velocity = new Vector2D(velocity.x, velocity.y);
 		this.position = new Vector2D(position.x, position.y);
@@ -56,6 +59,8 @@ class Particle {
 		this.ctx.beginPath();
 		this.ctx.arc(this.p.x, this.p.y, this.size, 0, Math.PI * 2, false);
 		this.ctx.fillStyle = this.color;
+		this.ctx.strokeStyle= this.outlineColor
+		this.ctx.stroke();
 		this.ctx.fill();
 	}
 	update() {
