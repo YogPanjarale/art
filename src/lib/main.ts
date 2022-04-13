@@ -11,12 +11,12 @@ import { TileStraight } from './Tiles/TileStraight';
 import { Bubbles } from './bubbles';
 import { LineX } from './LineX';
 import { Matrix } from './matrix';
-
+import  {Circle} from './Circle'
 export const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 
 
-type route = "swastik"| "tile-straight" | "tile-slant"| "paper-rulled" | "paper-displaced" | "generative-art" | "germs" | "particle-dots" | "blood-vessels"|"bubbles"| "linex"|"matrix";
+type route = "swastik"| "tile-straight" | "tile-slant"| "paper-rulled" | "paper-displaced" | "generative-art" | "germs" | "particle-dots" | "blood-vessels"|"bubbles"| "linex"|"matrix"|"circle";
 
 function getArt(route:route, ctx:CanvasRenderingContext2D): Art{
   switch(route){
@@ -44,6 +44,8 @@ function getArt(route:route, ctx:CanvasRenderingContext2D): Art{
       return new LineX(ctx);
     case 'matrix':
       return new Matrix(ctx);
+    case 'circle':
+      return new Circle(ctx);
     default:
       return new Art(ctx);
   }
