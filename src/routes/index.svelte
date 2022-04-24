@@ -40,7 +40,7 @@
 
 <svelte:head>
 	<MetaTags
-		title={art ? art + 'Art' : 'Art'}
+		title={art ? art + ' Art' : 'Art'}
 		description={`${art} generative digital art - by Yog Panjarale"`}
 	/>
 </svelte:head>

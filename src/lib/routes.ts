@@ -1,1 +1,1 @@
-export const routes =["swastik", "tile-straight" , "tile-slant", "paper-rulled" , "paper-displaced" , "generative-art" , "germs" , "particle-dots" , "blood-vessels","bubbles", "linex","matrix","circle"];
+export const routes =["swastik","saraswati", "tile-straight" , "tile-slant", "paper-rulled" , "paper-displaced" , "generative-art" , "germs" , "particle-dots" , "blood-vessels","bubbles", "linex","matrix","circle"];

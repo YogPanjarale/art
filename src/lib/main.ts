@@ -12,16 +12,19 @@ import { Bubbles } from './bubbles';
 import { LineX } from './LineX';
 import { Matrix } from './matrix';
 import  {Circle} from './Circle'
+import {Saraswati} from './Saraswati'
 export const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 
 
-type route = "swastik"| "tile-straight" | "tile-slant"| "paper-rulled" | "paper-displaced" | "generative-art" | "germs" | "particle-dots" | "blood-vessels"|"bubbles"| "linex"|"matrix"|"circle";
+type route = "swastik"|"saraswati"| "tile-straight" | "tile-slant"| "paper-rulled" | "paper-displaced" | "generative-art" | "germs" | "particle-dots" | "blood-vessels"|"bubbles"| "linex"|"matrix"|"circle";
 
 function getArt(route:route, ctx:CanvasRenderingContext2D): Art{
   switch(route){
     case 'swastik':
       return new Swastik(ctx);
+    case 'saraswati':
+      return new Saraswati(ctx)
     case 'tile-slant':
       return new TileSlant(ctx);
     case 'tile-straight':
