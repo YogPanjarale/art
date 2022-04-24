@@ -4,6 +4,9 @@ export const repeat = (n: number, action: (n:number) => void): void => {
     }
 }
 export class Vector2D {
+    equals(head: Vector2D): boolean {
+		return this.x === head.x && this.y === head.y;
+    }
 	constructor(public x: number, public y: number) {}
 	add(v: Vector2D): Vector2D {
 		return new Vector2D(this.x + v.x, this.y + v.y);
